@@ -25,7 +25,7 @@ SECRET_KEY=YOUR_SECRET_KEY
 ALGORITHM=YOUR_ALGORITHM
 ```
 
-# Пример алгоритма: HS256
+Пример алгоритма: HS256
 
 ```bash
 # Установка зависимостей
