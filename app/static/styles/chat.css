@@ -1,0 +1,270 @@
+/* styles/chat.css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    background: #f8f9fa;
+}
+
+.chat-container {
+    display: flex;
+    height: 100vh;
+    background: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Список пользователей */
+.user-list {
+    width: 300px;
+    background: #2c3e50;
+    color: white;
+    overflow-y: auto;
+    border-right: 1px solid #34495e;
+}
+
+.user-item {
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #34495e;
+}
+
+.user-item:hover {
+    background: #34495e;
+}
+
+.user-item.active {
+    background: #3498db;
+    border-left: 4px solid #2980b9;
+}
+
+.user-item:first-child {
+    background: #e74c3c;
+    font-weight: bold;
+}
+
+.user-item:first-child:hover {
+    background: #c0392b;
+}
+
+.user-item:first-child.active {
+    background: #c0392b;
+}
+
+/* Область чата */
+.chat-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Шапка чата */
+.chat-header {
+    background: #3498db;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.chat-header span {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.logout-button {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease;
+}
+
+.logout-button:hover {
+    background: #c0392b;
+}
+
+/* Область сообщений */
+.messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: #ecf0f1;
+}
+
+.message {
+    margin-bottom: 15px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    max-width: 70%;
+    word-wrap: break-word;
+    /* Убрана анимация появления */
+}
+
+.message.own {
+    background: #3498db;
+    color: white;
+    margin-left: auto;
+    border-bottom-right-radius: 2px;
+}
+
+.message.other {
+    background: white;
+    color: #2c3e50;
+    margin-right: auto;
+    border-bottom-left-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.message-time {
+    font-size: 11px;
+    opacity: 0.7;
+    margin-top: 5px;
+    text-align: right;
+}
+
+.welcome-message {
+    text-align: center;
+    color: #7f8c8d;
+    font-style: italic;
+    margin-top: 50px;
+}
+
+/* Область ввода */
+.input-area {
+    display: flex;
+    padding: 20px;
+    background: white;
+    border-top: 1px solid #bdc3c7;
+    gap: 10px;
+}
+
+#messageInput {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #bdc3c7;
+    border-radius: 25px;
+    outline: none;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+#messageInput:focus {
+    border-color: #3498db;
+}
+
+#messageInput:disabled {
+    background: #ecf0f1;
+    cursor: not-allowed;
+}
+
+#sendButton {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+#sendButton:hover:not(:disabled) {
+    background: #2980b9;
+    transform: translateY(-1px);
+}
+
+#sendButton:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Полоса прокрутки */
+.user-list::-webkit-scrollbar,
+.messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.user-list::-webkit-scrollbar-track,
+.messages::-webkit-scrollbar-track {
+    background: #34495e;
+}
+
+.user-list::-webkit-scrollbar-thumb {
+    background: #3498db;
+    border-radius: 3px;
+}
+
+.messages::-webkit-scrollbar-track {
+    background: #d5dbdb;
+}
+
+.messages::-webkit-scrollbar-thumb {
+    background: #95a5a6;
+    border-radius: 3px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .chat-container {
+        flex-direction: column;
+    }
+    
+    .user-list {
+        width: 100%;
+        height: 200px;
+        order: 2;
+    }
+    
+    .chat-area {
+        order: 1;
+        height: calc(100vh - 200px);
+    }
+    
+    .message {
+        max-width: 85%;
+    }
+}
+
+/* УДАЛЕНО: Анимации сообщений */
+/* @keyframes messageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message {
+    animation: messageAppear 0.3s ease;
+} */
+
+/* Индикатор "пользователь печатает" */
+.typing-indicator {
+    font-style: italic;
+    color: #7f8c8d;
+    padding: 5px 15px;
+    font-size: 12px;
+}
+
+/* Новые сообщения появляются моментально */
+.new-message {
+    opacity: 1;
+    transform: none;
+}
